@@ -1,0 +1,138 @@
+1. Insert dump of shop.sql to your local database
+mysql> CREATE DATABASE shop;
+Query OK, 1 row affected (0,28 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| my_items           |
+| mysql              |
+| performance_schema |
+| shop               |
+| sys                |
++--------------------+
+6 rows in set (0,02 sec)
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Pyth
+on-Martian-Manhunter-adv-/homeworks/HW7_SQL_Practice$ sudo mysql -u root --passw
+ord=Uagirl92 shop < shop.sql
+mysql: [Warning] Using a password on the command line interface can be insecure.
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Pyth
+on-Martian-Manhunter-adv-/homeworks/HW7_SQL_Practice$ sudo mysql -u root --passw
+ord=Uagirl92
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.25-0ubuntu0.20.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| my_items           |
+| mysql              |
+| performance_schema |
+| shop               |
+| sys                |
++--------------------+
+6 rows in set (0,00 sec)
+
+mysql> USE shop;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> SHOW TABLES;
++---------------------+
+| Tables_in_shop      |
++---------------------+
+| categories          |
+| categories_products |
+| product_images      |
+| products            |
+| users               |
++---------------------+
+5 rows in set (0,00 sec)
+
+
+2. Modify table products add user_id as foreign key
+mysql> SHOW COLUMNS FROM products;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| title       | varchar(255) | NO   |     | NULL    |                |
+| meta_title  | char(255)    | YES  |     | NULL    |                |
+| description | varchar(400) | YES  |     | NULL    |                |
+| price       | double       | NO   |     | NULL    |                |
+| old_price   | double       | YES  |     | NULL    |                |
+| is_active   | tinyint(1)   | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+7 rows in set (0,01 sec)
+
+mysql> ALTER TABLE products ADD COLUMN user_id INT NOT NULL;
+Query OK, 0 rows affected (0,49 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SHOW COLUMNS FROM products;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| title       | varchar(255) | NO   |     | NULL    |                |
+| meta_title  | char(255)    | YES  |     | NULL    |                |
+| description | varchar(400) | YES  |     | NULL    |                |
+| price       | double       | NO   |     | NULL    |                |
+| old_price   | double       | YES  |     | NULL    |                |
+| is_active   | tinyint(1)   | YES  |     | NULL    |                |
+| user_id     | int          | NO   |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+8 rows in set (0,01 sec)
+
+mysql> ALTER TABLE products ADD FOREIGN KEY(user_id) REFERENCES users(id);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`shop`.`#sql-558_8`, CONSTRAINT `products_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`))
+mysql> UPDATE products SET user_id = 1 WHERE id = 1;
+Query OK, 1 row affected (0,07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> ALTER TABLE products ADD FOREIGN KEY(user_id) REFERENCES users(id);
+Query OK, 1 row affected (2,24 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> SHOW COLUMNS FROM products;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| title       | varchar(255) | NO   |     | NULL    |                |
+| meta_title  | char(255)    | YES  |     | NULL    |                |
+| description | varchar(400) | YES  |     | NULL    |                |
+| price       | double       | NO   |     | NULL    |                |
+| old_price   | double       | YES  |     | NULL    |                |
+| is_active   | tinyint(1)   | YES  |     | NULL    |                |
+| user_id     | int          | NO   | MUL | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+8 rows in set (0,00 sec)
+
+
+3. Select users their products, collections and images and write this query to file.
+
+mysql> SELECT users.first_name, users.last_name, products.title, c.title, c.is_active, pi.file FROM users INNER JOIN products ON users.id=products.user_id INNER JOIN categories_products as cp ON cp.product_id=products.id INNER JOIN categories as c ON c.id=cp.category_id INNER JOIN product_images as pi ON pi.product_id=products.id;
++------------+-----------+-------+-------+-----------+------------------------------------------------------------------------------------+
+| first_name | last_name | title | title | is_active | file                                                                               |
++------------+-----------+-------+-------+-----------+------------------------------------------------------------------------------------+
+| Liubomyr   | Luzhnyi   | Rolex | Watch |         1 | https://res.cloudinary.com/hz3gmuqw6/image/upload/v1621495544/cooking_yx2glg.jpg   |
+| Liubomyr   | Luzhnyi   | Rolex | Watch |         1 | 11https://res.cloudinary.com/hz3gmuqw6/image/upload/v1621495544/cooking_yx2glg.jpg |
+| Liubomyr   | Luzhnyi   | Rolex | Watch |         1 | 2https://res.cloudinary.com/hz3gmuqw6/image/upload/v1621495544/cooking_yx2glg.jpg  |
++------------+-----------+-------+-------+-----------+------------------------------------------------------------------------------------+
+3 rows in set (0,00 sec)
