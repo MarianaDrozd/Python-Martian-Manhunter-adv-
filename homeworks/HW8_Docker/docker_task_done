@@ -324,20 +324,38 @@ there is no cowsay command.
 
 
 mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW8_Docker$ docker run -it --name my_story ubuntu
-root@55f1ba917a28:/# echo "Your story" > story.txt
+root@55f1ba917a28:/# echo "Let me tell you a story to chill the bones
+> About a thing that I saw
+> One night wandering in the everglades
+> I'd one drink but no more
+>
+> I was rambling, enjoying the bright moonlight
+> Gazing up at the stars
+> Not aware of a presence so near to me
+> Watching my every move" > story.txt
+
 root@55f1ba917a28:/# ls
 bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  story.txt  sys  tmp  usr  var
 root@55f1ba917a28:/# apt-get update
 root@55f1ba917a28:/# apt-get install cowsay
 root@55f1ba917a28:/# cat story.txt | /usr/games/cowsay
- ____________
-< Your story >
- ------------
+ _______________________________________
+/ Let me tell you a story to chill the  \
+| bones About a thing that I saw One    |
+| night wandering in the everglades I'd |
+| one drink but no more                 |
+|                                       |
+| I was rambling, enjoying the bright   |
+| moonlight Gazing up at the stars Not  |
+| aware of a presence so near to me     |
+\ Watching my every move                /
+ ---------------------------------------
         \   ^__^
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
                 ||     ||
+
 mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW8_Docker$ docker run -it --name my_story_2 ubuntu
 root@cabb98426b77:/# ls
 bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
