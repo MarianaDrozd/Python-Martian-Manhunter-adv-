@@ -1,0 +1,348 @@
+1. Use the simple Flask application and build Dockerfile for it.
+Create your own image (docker build) and try to run the container and interact with it by using your browser.
+Don't forget to pass the valid ports by using -p. (e.g .: -p 8080: 8080)
+Try to use such commands:
+- docker run (with -d, -it, or without) {id}/{name},
+- docker stop {id}/{name},
+- docker attach {id}/{name},
+- docker inspect {id}/{name},
+- docker logs {id}/{name}
+Change the flask application to print your name and rebuild the image. Run the container again to verify the result.
+
+
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker build . -t flask-app
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED              SIZE
+flask-app     latest    a5dc39eec3be   About a minute ago   422MB
+ubuntu        20.10     69040ea16df0   38 hours ago         79.4MB
+ubuntu        16.04     9ff95a467e45   7 days ago           135MB
+ubuntu        20.04     7e0aa2d69a15   4 weeks ago          72.7MB
+ubuntu        latest    7e0aa2d69a15   4 weeks ago          72.7MB
+hello-world   latest    d1165f221234   2 months ago         13.3kB
+jenkins       2.60.3    cd14cecfdb3a   2 years ago          696MB
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker run -p 8080:8080 flask-app
+ * Serving Flask app '/opt/app.py' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://172.17.0.2:8080/ (Press CTRL+C to quit)
+172.17.0.1 - - [27/May/2021 14:56:08] "GET / HTTP/1.1" 200 -
+
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+92223d96b301   flask-app   "/bin/sh -c 'FLASK_A…"   8 minutes ago   Up 8 minutes   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   flamboyant_ptolemy
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker stop 9
+9
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker run -d flask-app
+271edc297ad58ae7a6d492355e141c2060edda8587e96ff0e32da24fc70a291a
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED              STATUS              PORTS     NAMES
+271edc297ad5   flask-app   "/bin/sh -c 'FLASK_A…"   About a minute ago   Up About a minute             fervent_panini
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker stop 2
+2
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED          STATUS          PORTS     NAMES
+891944821c46   flask-app   "/bin/sh -c 'FLASK_A…"   12 seconds ago   Up 10 seconds             sad_hertz
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker attach 8
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker stop 8
+8
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker inspect 8
+[
+    {
+        "Id": "891944821c46ffa0dc16c8f9ad845d698e6ec169324631a1abf28af4594eaa7a",
+        "Created": "2021-05-27T15:11:56.284010924Z",
+        "Path": "/bin/sh",
+        "Args": [
+            "-c",
+            "FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080"
+        ],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 137,
+            "Error": "",
+            "StartedAt": "2021-05-27T15:11:58.149386919Z",
+            "FinishedAt": "2021-05-27T15:15:05.409412756Z"
+        },
+        "Image": "sha256:a5dc39eec3be62a9c0d8958917259dfd58cf2114596c77b4ec62dfcff7e624ab",
+        "ResolvConfPath": "/var/lib/docker/containers/891944821c46ffa0dc16c8f9ad845d698e6ec169324631a1abf28af4594eaa7a/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/891944821c46ffa0dc16c8f9ad845d698e6ec169324631a1abf28af4594eaa7a/hostname",
+        "HostsPath": "/var/lib/docker/containers/891944821c46ffa0dc16c8f9ad845d698e6ec169324631a1abf28af4594eaa7a/hosts",
+        "LogPath": "/var/lib/docker/containers/891944821c46ffa0dc16c8f9ad845d698e6ec169324631a1abf28af4594eaa7a/891944821c46ffa0dc16c8f9ad845d698e6ec169324631a1abf28af4594eaa7a-json.log",
+        "Name": "/sad_hertz",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "default",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "host",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "KernelMemory": 0,
+            "KernelMemoryTCP": 0,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": false,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/62b76b6ac6311e2cd3f130dfea1fc60526f4f25645b586803259adbd34a6be6a-init/diff:/var/lib/docker/overlay2/f452f9aa8b2f409607022af4b8ede57f8cdeb1d9ffacc7d028193f065bef0a5a/diff:/var/lib/docker/overlay2/44a51630556db66f0264a17d6e6199a161940310d73a3b5e7b10aae30214a501/diff:/var/lib/docker/overlay2/520658a1612f9bb26736de9e70aa8ae7265f60bed3512dff1e173034208c7a34/diff:/var/lib/docker/overlay2/e07ba92303c35cb098307acf0cb5552a934ccdffcd4b0302a6b6298f6912474c/diff:/var/lib/docker/overlay2/89052ced829d006a3c7a35c75fd8a896b95d8e5b688c61136caa9a79d8435850/diff:/var/lib/docker/overlay2/7c3977bf4153478497606ac521a07877f33d702b40446cbdd25488c98bf12bda/diff",
+                "MergedDir": "/var/lib/docker/overlay2/62b76b6ac6311e2cd3f130dfea1fc60526f4f25645b586803259adbd34a6be6a/merged",
+                "UpperDir": "/var/lib/docker/overlay2/62b76b6ac6311e2cd3f130dfea1fc60526f4f25645b586803259adbd34a6be6a/diff",
+                "WorkDir": "/var/lib/docker/overlay2/62b76b6ac6311e2cd3f130dfea1fc60526f4f25645b586803259adbd34a6be6a/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "891944821c46",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": null,
+            "Image": "flask-app",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "/bin/sh",
+                "-c",
+                "FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080"
+            ],
+            "OnBuild": null,
+            "Labels": {}
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "fc5c02799e5ea8b87dd4f9d21041d1ee0fe4962f44888a549cbcbb9b52aab68d",
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "Ports": {},
+            "SandboxKey": "/var/run/docker/netns/fc5c02799e5e",
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "bridge": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "NetworkID": "3ab636ef843939d30de594ff21fdfb5aece3bc4a0ab0e3621e9a8ad78bd83b65",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "MacAddress": "",
+                    "DriverOpts": null
+                }
+            }
+        }
+    }
+]
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker logs 8
+ * Serving Flask app '/opt/app.py' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://172.17.0.2:8080/ (Press CTRL+C to quit)
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker build . -t flask-app
+Sending build context to Docker daemon  17.92kB
+Step 1/5 : FROM ubuntu:20.04
+ ---> 7e0aa2d69a15
+Step 2/5 : RUN apt-get update && apt-get install -y python python3-pip
+ ---> Using cache
+ ---> 04dd7c53b406
+Step 3/5 : RUN pip install flask
+ ---> Using cache
+ ---> 8fd6e1552181
+Step 4/5 : COPY app.py /opt/
+ ---> e98f698814aa
+Step 5/5 : ENTRYPOINT FLASK_APP=/opt/app.py flask run --host=0.0.0.0 --port=8080
+ ---> Running in 160bd0ab182c
+Removing intermediate container 160bd0ab182c
+ ---> 512a92475009
+Successfully built 512a92475009
+Successfully tagged flask-app:latest
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker run -p 8080:8080 flask-app
+ * Serving Flask app '/opt/app.py' (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on all addresses.
+   WARNING: This is a development server. Do not use it in a production deployment.
+ * Running on http://172.17.0.2:8080/ (Press CTRL+C to quit)
+172.17.0.1 - - [27/May/2021 15:27:28] "GET / HTTP/1.1" 200 -
+
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks
+/HW8_Docker$ docker ps
+CONTAINER ID   IMAGE       COMMAND                  CREATED              STATUS              PORTS                                       NAMES
+02afb8f0b7b5   flask-app   "/bin/sh -c 'FLASK_A…"   About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp   angry_poincare
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW8_Docker$ docker stop 0
+0
+
+
+2*.
+• docker run -it --name my_story ubuntu
+• In the container, run echo "Your story" > story.txt
+• Install cowsay with apt-get install cowsay and execute cat story.txt|cowsay.
+• In another terminal window, run docker run -it --name my_story_2 ubuntu
+• Using ls, check that there is no joke.txt file, because you are in another different container. Also,
+there is no cowsay command.
+
+
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW8_Docker$ docker run -it --name my_story ubuntu
+root@55f1ba917a28:/# echo "Your story" > story.txt
+root@55f1ba917a28:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  story.txt  sys  tmp  usr  var
+root@55f1ba917a28:/# apt-get update
+root@55f1ba917a28:/# apt-get install cowsay
+root@55f1ba917a28:/# cat story.txt | /usr/games/cowsay
+ ____________
+< Your story >
+ ------------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW8_Docker$ docker run -it --name my_story_2 ubuntu
+root@cabb98426b77:/# ls
+bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@cabb98426b77:/# cat joke.txt | cowsay
+bash: cowsay: command not found
+cat: joke.txt: No such file or directory
+
+
