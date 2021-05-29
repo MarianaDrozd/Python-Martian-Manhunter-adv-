@@ -7,25 +7,25 @@ class TestTicTacToe(unittest.TestCase):
         self.game = TicTacToe()
 
     def test_winner(self):
-        self.game.board = ['X', 'X', 'X', ' ', ' ', ' ', ' ', ' ', ' ']  # row
+        self.game.board = ['X', 'X', 'X', '0', ' ', ' ', '0', ' ', ' ']  # row
         self.assertTrue(self.game.winner(0, 'X'))
         self.assertTrue(self.game.winner(1, 'X'))
         self.assertTrue(self.game.winner(2, 'X'))
-        self.assertTrue(self.game.winner(8, ' '))
+        self.assertFalse(self.game.winner(8, ' '))
         self.assertFalse(self.game.winner(5, '0'))
 
-        self.game.board = [' ', ' ', ' ', 'X', 'X', 'X', ' ', ' ', ' ']  # row
+        self.game.board = [' ', '0', ' ', 'X', 'X', 'X', ' ', '0', ' ']  # row
         self.assertTrue(self.game.winner(3, 'X'))
         self.assertTrue(self.game.winner(4, 'X'))
         self.assertTrue(self.game.winner(5, 'X'))
-        self.assertTrue(self.game.winner(8, ' '))
+        self.assertFalse(self.game.winner(8, ' '))
         self.assertFalse(self.game.winner(2, '0'))
 
-        self.game.board = ['0', ' ', '0', ' ', ' ', ' ', 'X', 'X', 'X']  # row
+        self.game.board = [' ', ' ', '0', ' ', ' ', '0', 'X', 'X', 'X']  # row
         self.assertTrue(self.game.winner(6, 'X'))
         self.assertTrue(self.game.winner(7, 'X'))
         self.assertTrue(self.game.winner(8, 'X'))
-        self.assertTrue(self.game.winner(3, ' '))
+        self.assertFalse(self.game.winner(5, ' '))
         self.assertFalse(self.game.winner(0, '0'))
 
         self.game.board = ['X', '0', '0', 'X', ' ', ' ', 'X', ' ', ' ']  # column
