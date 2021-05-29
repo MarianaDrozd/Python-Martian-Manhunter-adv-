@@ -10,8 +10,13 @@ def test_add():
     assert Calculator.add(-3, 6.0) == 3
     assert Calculator.add("4", "5") == "45"
     assert Calculator.add(5, 5) != 9
+
+
+def test_add_negative():
     with pytest.raises(TypeError):
         Calculator.add(4, "56")
+        Calculator.add(None, 7)
+        Calculator.add([], 2)
 
 
 def test_subtract():
@@ -20,9 +25,14 @@ def test_subtract():
     assert Calculator.subtract(-3, -4) == 1
     assert Calculator.subtract(6.25, 3.05) == 3.20
     assert Calculator.subtract(5, -5) != 1
+
+
+def test_subtract_negative():
     with pytest.raises(TypeError):
         Calculator.subtract("5", "2")
         Calculator.subtract("9", 7)
+        Calculator.subtract(5, None)
+        Calculator.subtract([9], 9)
 
 
 def test_multiply():
@@ -37,6 +47,14 @@ def test_multiply():
     assert Calculator.multiply(2, 7) != 13
 
 
+def test_multiply_negative():
+    with pytest.raises(TypeError):
+        assert Calculator.multiply(None, 6)
+        assert Calculator.multiply([6], [5])
+        assert Calculator.multiply({5}, 3)
+        assert Calculator.multiply((1, 2), 8)
+
+
 def test_divide():
     assert Calculator.divide(0, 6) == 0
     assert Calculator.divide(9, 3) == 3
@@ -44,6 +62,9 @@ def test_divide():
     assert Calculator.divide(9, -3) == -3
     assert Calculator.divide(5.5, 5) == 1.1
     assert Calculator.divide(4, 2) != 8
+
+
+def test_divide_negative():
     with pytest.raises(ValueError):
         Calculator.divide(2, 0)
         Calculator.divide(-3, 0)
