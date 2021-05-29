@@ -12,8 +12,12 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(Calculator.add(-3, 6.0), 3)
         self.assertEqual(Calculator.add("4", "5"), "45")
         self.assertNotEqual(Calculator.add(5, 5), 9)
+
+    def test_add_negative(self):
         with self.assertRaises(TypeError):
             Calculator.add(4, "56")
+            Calculator.add(None, 7)
+            Calculator.add([], 2)
 
     def test_subtract(self):
         self.assertEqual(Calculator.subtract(6, 2), 4)
@@ -22,9 +26,13 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(Calculator.subtract(6.25, 3.05), 3.20)
         self.assertEqual(Calculator.subtract(6, 5.5), 0.5)
         self.assertNotEqual(Calculator.subtract(5, -5), 1)
+
+    def test_subtract(self):
         with self.assertRaises(TypeError):
             Calculator.subtract("5", "2")
             Calculator.subtract("9", 7)
+            Calculator.subtract(5, None)
+            Calculator.subtract([9], 9)
 
     def test_multiply(self):
         self.assertEqual(Calculator.multiply(0, 0), 0)
@@ -37,6 +45,12 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(Calculator.multiply(0.5, 0.5), 0.25)
         self.assertNotEqual(Calculator.multiply(2, 7), 13)
 
+    def test_multiply_negative(self):
+        with self.assertRaises(TypeError):
+            Calculator.multiply(None, 6)
+            Calculator.multiply([6], [5])
+            Calculator.multiply((1, 2), 8)
+
     def test_divide(self):
         self.assertEqual(Calculator.divide(0, 6), 0)
         self.assertEqual(Calculator.divide(9, 3), 3)
@@ -44,6 +58,8 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(Calculator.divide(9, -3), -3)
         self.assertEqual(Calculator.divide(5.5, 5), 1.1)
         self.assertNotEqual(Calculator.divide(4, 2), 8)
+
+    def test_divide_negative(self):
         with self.assertRaises(ValueError):
             Calculator.divide(2, 0)
             Calculator.divide(-3, 0)
