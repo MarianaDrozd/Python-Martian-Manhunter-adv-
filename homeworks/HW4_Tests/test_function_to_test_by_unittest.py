@@ -27,7 +27,7 @@ class TestCalculator(unittest.TestCase):
         self.assertEqual(Calculator.subtract(6, 5.5), 0.5)
         self.assertNotEqual(Calculator.subtract(5, -5), 1)
 
-    def test_subtract(self):
+    def test_subtract_negative(self):
         with self.assertRaises(TypeError):
             Calculator.subtract("5", "2")
             Calculator.subtract("9", 7)
