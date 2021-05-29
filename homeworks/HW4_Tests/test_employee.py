@@ -9,18 +9,15 @@ class TestEmployee(unittest.TestCase):
         self.employee2 = Employee("Paul", "McCartney", -1500)
         self.employee3 = Employee("Ringo", "Starr", 0)
         self.employee4 = Employee("George", "Harrison", None)
+        self.employees = [self.employee1, self.employee2, self.employee3, self.employee4]
 
     def test_email(self):
-        self.assertEqual(self.employee1.email, "John.Lennon@email.com")
-        self.assertEqual(self.employee2.email, "Paul.McCartney@email.com")
-        self.assertEqual(self.employee3.email, "Ringo.Starr@email.com")
-        self.assertEqual(self.employee4.email, "George.Harrison@email.com")
+        for employee in self.employees:
+            self.assertEqual(employee.email, f"{employee.first}.{employee.last}@email.com")
 
     def test_fullname(self):
-        self.assertEqual(self.employee1.fullname, "John Lennon")
-        self.assertEqual(self.employee2.fullname, "Paul McCartney")
-        self.assertEqual(self.employee3.fullname, "Ringo Starr")
-        self.assertEqual(self.employee4.fullname, "George Harrison")
+        for employee in self.employees:
+            self.assertEqual(employee.fullname, f"{employee.first} {employee.last}")
 
     def test_apply_raise(self):
         self.employee1.apply_raise()
