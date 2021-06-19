@@ -46,4 +46,4 @@ def test_weather(client):
     response = client.get('/weather?city=Lviv,London')
     assert response.status_code == 200
     response = client.get('/weather?city=L')
-    assert response.status_code == 200
+    assert response.status_code == 404
