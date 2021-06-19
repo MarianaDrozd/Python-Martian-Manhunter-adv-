@@ -9,13 +9,13 @@ def test_create(client, todos):
     }
     response = client.post("/todos", headers=headers, json=todos)
     assert response.status_code == 200
-    assert response.json['1'] == "text"
+    assert response.json["1"] == "text"
 
 
 def test_list(client):
-    response = client.get('/todos')
+    response = client.get("/todos")
     assert response.status_code == 200
-    assert response.json['1'] == "text"
+    assert response.json["1"] == "text"
 
 
 def test_update(client):
@@ -27,7 +27,7 @@ def test_update(client):
     assert response.status_code == 200
     get_response = client.get("/todos/1")
     assert get_response.status_code == 200
-    assert get_response.json['1'] == "blablabla"
+    assert get_response.json["1"] == "blablabla"
 
 
 def test_delete(client):
@@ -41,9 +41,9 @@ def test_weather(client):
     Config.WEATHER_API_KEY = "50569510c1msh6d39f712d3097bap19cf4bjsn4a3857cc9fd4"
     Config.WEATHER_API_URL = "https://community-open-weather-map.p.rapidapi.com/find"
     Config.WEATHER_API_HOST = "community-open-weather-map.p.rapidapi.com"
-    response = client.get('/weather?city=Lviv')
+    response = client.get("/weather?city=Lviv")
     assert response.status_code == 200
-    response = client.get('/weather?city=Lviv,London')
+    response = client.get("/weather?city=Lviv,London")
     assert response.status_code == 200
-    response = client.get('/weather?city=L')
+    response = client.get("/weather?city=L")
     assert response.status_code == 404
