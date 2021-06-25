@@ -17,6 +17,7 @@ with app.app_context():
     import routes.todo
     import routes.weather
     import routes.blog
+    import routes.api.blog
     from models.models import User, Article, Category
 
     db.create_all()
