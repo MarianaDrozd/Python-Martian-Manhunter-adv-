@@ -10,7 +10,7 @@ services:
 
   mysql:
     image: mysql:8.0
-    container_name: flask-mysql
+    container_name: flask-mysql1
     working_dir: /application
     volumes:
       - .:/application
