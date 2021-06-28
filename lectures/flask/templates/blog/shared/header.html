@@ -9,5 +9,14 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="menuItemsList">
             </ul>
         </div>
+        <div class="user-profile-block">
+           {% if session.get('user', None) %}
+            <span>{{ session.get('user').get('email') }}</span>
+            <a href="/logout">Log out</a>
+           {% else %}
+            <a href="/sign-in">sign In</a>
+            <a href="/sign-up">sign Up</a>
+           {% endif %}
+        </div>
     </div>
 </nav>

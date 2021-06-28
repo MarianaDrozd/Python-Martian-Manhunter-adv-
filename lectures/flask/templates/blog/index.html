@@ -1,12 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    {% include 'blog/shared/head.html' %}
-
-    <title>Cursor Blog | Cursor</title>
-</head>
-<body>
-{% include 'blog/shared/header.html' %}
+{% extends 'blog/base.html' %}
+{% block title %}
+ <title>Homepage</title>
+{% endblock %}
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -18,8 +14,4 @@
         </div>
     </div>
 </div>
-
-
-{% include 'blog/shared/scripts.html' %}
-</body>
-</html>
+{% endblock %}

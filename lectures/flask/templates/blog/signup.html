@@ -2,17 +2,27 @@
 <html lang="en">
 <head>
     {% include 'blog/shared/head.html' %}
-    <title>Create article</title>
+    <title>Sign up</title>
 </head>
 <body>
 {% include 'blog/shared/header.html' %}
 
 <div class="container">
-    <h1>Create Article</h1>
-    <form class="needs-validation" novalidate action="/article/store" method="POST" enctype="multipart/form-data">
+    <h1>Sign Up</h1>
+    <form class="needs-validation" novalidate action="/user-register" method="POST" enctype="multipart/form-data">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" required class="form-control" id="title" name="title" placeholder="Kek">
+            <label for="username">Username</label>
+            <input type="text" required class="form-control" id="username" name="username" placeholder="Kek">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Empty title
+            </div>
+        </div>
+           <div class="form-group">
+            <label for="username">Password</label>
+            <input type="password" required class="form-control" id="password" name="password" placeholder="Kek">
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -21,8 +31,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="slug">Slug</label>
-            <input type="text" required class="form-control" id="slug" name="slug" placeholder="Kek">
+            <label for="email">Email</label>
+            <input type="email" required class="form-control" id="email" name="email" placeholder="test@test.com">
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -37,15 +47,6 @@
                 Empty description
             </div>
         </div>
-        <div class="form-group">
-            <label for="short_description">Short Description</label>
-            <textarea class="form-control" id="short_description" name="short_description" rows="3"></textarea>
-        </div>
-          <div class="custom-file mg-top-sm">
-              <input type="file" class="custom-file-input" id="customFile" name="img">
-            <label class="custom-file-label" for="customFile">Choose file...</label>
-            <div class="invalid-feedback">Invalid file</div>
-          </div>
         <div class="btn-group mg-top-sm col-sm-12" role="group" aria-label="Create article">
             <button type="submit" class="btn btn-primary">Save</button>
         </div>
@@ -70,12 +71,6 @@
     });
   }, false);
 })();
-
-$(document).ready(function () {
-    $('#title').on('input', function (e) {
-        console.log($(this).val());
-    });
-});
 </script>
 </body>
 </html>

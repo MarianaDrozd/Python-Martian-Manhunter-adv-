@@ -15,6 +15,11 @@ class User(db.Model, Serializer):
         unique=True,
         nullable=False
     )
+    password = db.Column(
+        db.String(64),
+        unique=False,
+        nullable=False
+    )
     email = db.Column(
         db.String(80),
         index=True,
@@ -44,6 +49,15 @@ class User(db.Model, Serializer):
     def __repr__(self):
         return '<User {}>'.format(self.username)
 
+    @property
+    def serialize(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            'bio': self.bio,
+        }
+
 
 article_categories = db.Table('article_categories',
                         db.Column("article_id", db.Integer, db.ForeignKey('articles.id')),
@@ -58,7 +72,7 @@ class Article(db.Model):
         primary_key=True
     )
     author_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    author = db.relationship("User", backref='articles', lazy=True)
+    # author = db.relationship("User", backref='articles', lazy=True)
     title = db.Column(
         db.String(255),
         nullable=False,

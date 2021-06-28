@@ -6,6 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 app = Flask(__name__)
+app.secret_key = "btIeBI8NJgtnPpaocmKyyimUbmsqlSWn"
 
 app.config.from_object("config.Config")
 
