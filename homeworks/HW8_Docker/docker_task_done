@@ -362,5 +362,3 @@ bin  boot  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  roo
 root@cabb98426b77:/# cat joke.txt | cowsay
 bash: cowsay: command not found
 cat: joke.txt: No such file or directory
-
-
