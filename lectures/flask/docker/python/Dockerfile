@@ -11,4 +11,7 @@ RUN pip install flask
 # copy project
 COPY . /usr/src/app/
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+COPY ./requirements.txt /application/requirements.txt
+RUN pip install -r requirements.txt
+
+CMD ["./wait-for-it.sh", "mysql:3306", "--", "python3", "-m" , "flask", "run", "--host=0.0.0.0"]

@@ -82,6 +82,11 @@ def article_create():
     return render_template('blog/article_create.html')
 
 
+@app.route('/contact-us')
+def contact_us():
+    return render_template('blog/contact-us.html')
+
+
 @app.route('/article/store', methods=["POST"])
 def article_store():
     if not session.get('user', False):

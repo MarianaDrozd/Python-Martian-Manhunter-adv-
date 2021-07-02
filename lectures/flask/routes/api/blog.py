@@ -1,8 +1,9 @@
-from app import app, api, db
+from app import app, api, db, mail
 from flask import render_template, request, Response
 from config import Config, articles
 from flask_restful import Resource, Api
 from models.models import Article, User
+from flask_mail import Message
 
 
 class MenuItem(Resource):
@@ -75,8 +76,20 @@ class Users(Resource):
         return serialized_articles
 
 
+class Contact(Resource):
+    def post(self):
+        data = request.json
+        msg = Message('Contact form alert!', sender='turupuru8@gmail.com', recipients=['l.luzhnuy@gmail.com'])
+        msg.html = "Contact Email: " + data['email'] + "<br>" + "Contact Title: " + data['title'] + "<br>" + "Contact Description: " + data['description']
+        mail.send(msg)
+        client_msg = Message('Dear Client!', sender='turupuru8@gmail.com', recipients=[data['email']])
+        client_msg.html = render_template('blog/emails/contact.html', email=data['email'])
+        mail.send(client_msg)
+        return Response(status=200)
+
+
 api.add_resource(MenuItem, '/api/menu-items')
 api.add_resource(Articles, '/api/articles')
 api.add_resource(Users, '/api/users')
 api.add_resource(ArticlesEntity, '/api/articles/<int:id>')
-
+api.add_resource(Contact, '/api/contact')
