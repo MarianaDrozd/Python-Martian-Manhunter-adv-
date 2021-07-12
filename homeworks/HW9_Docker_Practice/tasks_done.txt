@@ -1,0 +1,95 @@
+1. Save the ubuntu images to a tar/zip archive and then extract the layers and metadata files from them.(Tip: use `docker save -o` command)
+
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ docker images
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+flask-app     latest    512a92475009   3 days ago     422MB
+<none>        <none>    a5dc39eec3be   4 days ago     422MB
+ubuntu        20.10     69040ea16df0   5 days ago     79.4MB
+ubuntu        16.04     9ff95a467e45   11 days ago    135MB
+ubuntu        20.04     7e0aa2d69a15   5 weeks ago    72.7MB
+ubuntu        latest    7e0aa2d69a15   5 weeks ago    72.7MB
+hello-world   latest    d1165f221234   2 months ago   13.3kB
+jenkins       2.60.3    cd14cecfdb3a   2 years ago    696MB
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ docker save -oubuntu-all.tar ubuntu
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ ls -sh ubuntu-all.tar
+283M ubuntu-all.tar
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ ls
+tasks_done.txt  ubuntu-all.tar
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ mkdir ubuntu-all
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ tar -xvf ubuntu-all.tar -C ubuntu-all/
+0fc3d772564ea3cc3da047354dfdab06fe4fa1c6d9847323ac93f62aed46f383/
+0fc3d772564ea3cc3da047354dfdab06fe4fa1c6d9847323ac93f62aed46f383/VERSION
+0fc3d772564ea3cc3da047354dfdab06fe4fa1c6d9847323ac93f62aed46f383/json
+0fc3d772564ea3cc3da047354dfdab06fe4fa1c6d9847323ac93f62aed46f383/layer.tar
+2ae7aa944634fefcfd5b886827d742268228e070238fb405b4d846b266060dbb/
+2ae7aa944634fefcfd5b886827d742268228e070238fb405b4d846b266060dbb/VERSION
+2ae7aa944634fefcfd5b886827d742268228e070238fb405b4d846b266060dbb/json
+2ae7aa944634fefcfd5b886827d742268228e070238fb405b4d846b266060dbb/layer.tar
+360bc9f4ecfd9b21d464ff4dd4a30e69799c64f242c729b785aad30ae9ad829a/
+360bc9f4ecfd9b21d464ff4dd4a30e69799c64f242c729b785aad30ae9ad829a/VERSION
+360bc9f4ecfd9b21d464ff4dd4a30e69799c64f242c729b785aad30ae9ad829a/json
+360bc9f4ecfd9b21d464ff4dd4a30e69799c64f242c729b785aad30ae9ad829a/layer.tar
+69040ea16df09b627e155acc7762b65b4474f341a3b09fee9b9f7e003224b8ad.json
+6e04f1f804d0d621b5a098dc2ecb5bcc7515cdf7f13d530a12fab11a194cfc72/
+6e04f1f804d0d621b5a098dc2ecb5bcc7515cdf7f13d530a12fab11a194cfc72/VERSION
+6e04f1f804d0d621b5a098dc2ecb5bcc7515cdf7f13d530a12fab11a194cfc72/json
+6e04f1f804d0d621b5a098dc2ecb5bcc7515cdf7f13d530a12fab11a194cfc72/layer.tar
+71f7ab01470caac97dc29067563027ea19ae19acccd1b3e4a5bae32d33884d23/
+71f7ab01470caac97dc29067563027ea19ae19acccd1b3e4a5bae32d33884d23/VERSION
+71f7ab01470caac97dc29067563027ea19ae19acccd1b3e4a5bae32d33884d23/json
+71f7ab01470caac97dc29067563027ea19ae19acccd1b3e4a5bae32d33884d23/layer.tar
+7e0aa2d69a153215c790488ed1fcec162015e973e49962d438e18249d16fa9bd.json
+9ff95a467e458bb9e8653b1df439e02e07fc0be5b362cc3d9aeb0d04039d5925.json
+b0dc64a90e6519f5d9ee41e75ddc7a9eb289b16f1c6928a0261a3391b789bd61/
+b0dc64a90e6519f5d9ee41e75ddc7a9eb289b16f1c6928a0261a3391b789bd61/VERSION
+b0dc64a90e6519f5d9ee41e75ddc7a9eb289b16f1c6928a0261a3391b789bd61/json
+b0dc64a90e6519f5d9ee41e75ddc7a9eb289b16f1c6928a0261a3391b789bd61/layer.tar
+bb3248d8142d8387ef4a4c41da99a50481df730503f02782afb82283e08ede88/
+bb3248d8142d8387ef4a4c41da99a50481df730503f02782afb82283e08ede88/VERSION
+bb3248d8142d8387ef4a4c41da99a50481df730503f02782afb82283e08ede88/json
+bb3248d8142d8387ef4a4c41da99a50481df730503f02782afb82283e08ede88/layer.tar
+dcb94b5aa59980a12ed6ebcd073954039b71da4e4a9428afc0f18c847a3438ac/
+dcb94b5aa59980a12ed6ebcd073954039b71da4e4a9428afc0f18c847a3438ac/VERSION
+dcb94b5aa59980a12ed6ebcd073954039b71da4e4a9428afc0f18c847a3438ac/json
+dcb94b5aa59980a12ed6ebcd073954039b71da4e4a9428afc0f18c847a3438ac/layer.tar
+ecb557a43054ea9afdda1278b21a00282e6b20e2c1688ca74b0eb694fd53b946/
+ecb557a43054ea9afdda1278b21a00282e6b20e2c1688ca74b0eb694fd53b946/VERSION
+ecb557a43054ea9afdda1278b21a00282e6b20e2c1688ca74b0eb694fd53b946/json
+ecb557a43054ea9afdda1278b21a00282e6b20e2c1688ca74b0eb694fd53b946/layer.tar
+f3f2ad580f7e6eb71163e45a6cbef2d6b82377e274e5193ff5708f506e9322bc/
+f3f2ad580f7e6eb71163e45a6cbef2d6b82377e274e5193ff5708f506e9322bc/VERSION
+f3f2ad580f7e6eb71163e45a6cbef2d6b82377e274e5193ff5708f506e9322bc/json
+f3f2ad580f7e6eb71163e45a6cbef2d6b82377e274e5193ff5708f506e9322bc/layer.tar
+manifest.json
+repositories
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ ls ubuntu-all
+0fc3d772564ea3cc3da047354dfdab06fe4fa1c6d9847323ac93f62aed46f383       b0dc64a90e6519f5d9ee41e75ddc7a9eb289b16f1c6928a0261a3391b789bd61
+2ae7aa944634fefcfd5b886827d742268228e070238fb405b4d846b266060dbb       bb3248d8142d8387ef4a4c41da99a50481df730503f02782afb82283e08ede88
+360bc9f4ecfd9b21d464ff4dd4a30e69799c64f242c729b785aad30ae9ad829a       dcb94b5aa59980a12ed6ebcd073954039b71da4e4a9428afc0f18c847a3438ac
+69040ea16df09b627e155acc7762b65b4474f341a3b09fee9b9f7e003224b8ad.json  ecb557a43054ea9afdda1278b21a00282e6b20e2c1688ca74b0eb694fd53b946
+6e04f1f804d0d621b5a098dc2ecb5bcc7515cdf7f13d530a12fab11a194cfc72       f3f2ad580f7e6eb71163e45a6cbef2d6b82377e274e5193ff5708f506e9322bc
+71f7ab01470caac97dc29067563027ea19ae19acccd1b3e4a5bae32d33884d23       manifest.json
+7e0aa2d69a153215c790488ed1fcec162015e973e49962d438e18249d16fa9bd.json  repositories
+9ff95a467e458bb9e8653b1df439e02e07fc0be5b362cc3d9aeb0d04039d5925.json
+
+
+2*. Run a container that outputs the current date and time in Rome. Should be only Dockerfile.(Tip: user 'tzdata' library)
+
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ docker build . -t rome-time
+Sending build context to Docker daemon  591.6MB
+Step 1/4 : FROM ubuntu:20.04
+ ---> 7e0aa2d69a15
+Step 2/4 : RUN apt-get update && apt-get install -y tzdata
+ ---> Using cache
+ ---> d3283bdcaca4
+Step 3/4 : ENV TZ=Europe/Rome
+ ---> Using cache
+ ---> fe76db5adac3
+Step 4/4 : CMD date
+ ---> Running in 7ed659f08a25
+Removing intermediate container 7ed659f08a25
+ ---> 033132de21d7
+Successfully built 033132de21d7
+Successfully tagged rome-time:latest
+mariana@mariana-HP-EliteBook-8760w:~/Документи/CURSOR/Martian Manhunter Adv/Python-Martian-Manhunter-adv-/homeworks/HW9_Docker_Practice$ docker run rome-time
+Mon May 31 20:43:03 CEST 2021
