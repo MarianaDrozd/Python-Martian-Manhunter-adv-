@@ -1,5 +1,6 @@
 from tests.conftest import client
 
+
 def test_menu_items(client):
     response = client.get('/menu-items')
     data = response.json
