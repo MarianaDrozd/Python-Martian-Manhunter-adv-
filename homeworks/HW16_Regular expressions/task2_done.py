@@ -7,12 +7,16 @@ data = requests.get(link)
 
 res1 = re.finditer(r"<p>(?P<university>.*).*\n?<b>(?P<email>.*)<", data.text)
 results1 = list((re.sub(r"\t", "", match.group("university")), match.group("email")) for match in res1)
-print("Results1: \n", results1, "\n")
-
+print("Results1: \n", results1, sep="\n")
+with open("results1.txt", "w") as file1:
+    file1.write("\n".join(map(str, results1)))
 
 results2 = {}
-items = re.finditer(r">\s\d+\.\s((?P<title>[а-яА-Яa-z-єіїЄІЇ,\s]+)\<\/span><\/h2>\s?)((<p>)?[а-яА-Яa-z-єіїЄІЇ,.\s]+<b>[a-zA-Z0-9_@.]+<\/b>\s?\n?(<\/p>)?)*", data.text)
+items = re.finditer(r'>\s\d+\.\s((?P<title>[а-яА-Яa-z-єіїЄІЇ,\s]+)\<\/span><\/h2>\s?)((<p>)?[а-яА-Яa-zA-Z-єіїЄІЇ",.\s]+<b>[a-zA-Z0-9_@.]+<\/b>\s?\n?(<\/p><p>)?)*', data.text)
 for item in items:
     res2 = re.finditer(r"<p>(?P<university>.*).*\n?<b>(?P<email>.*)<", item.group(0))
     results2.update({item.group("title"): list((re.sub(r"\t", "", match.group("university")), match.group("email")) for match in res2)})
-print("Results2: \n", results2)
+print("Results2: \n", results2, sep="\n")
+with open("results2.txt", "w") as file2:
+    file2.write(str("\n".join([":\n ".join(["\n".join([key, str(value)]) for key, value in results2.items()])])))
+
