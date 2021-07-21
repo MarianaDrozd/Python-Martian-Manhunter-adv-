@@ -19,4 +19,3 @@ for item in items:
 print("Results2: \n", results2, sep="\n")
 with open("results2.txt", "w") as file2:
     file2.write(str("\n".join([":\n ".join(["\n".join([key, str(value)]) for key, value in results2.items()])])))
-
