@@ -79,4 +79,3 @@ api.add_resource(MenuItem, '/api/menu-items')
 api.add_resource(Articles, '/api/articles')
 api.add_resource(Users, '/api/users')
 api.add_resource(ArticlesEntity, '/api/articles/<int:id>')
-
