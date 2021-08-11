@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order details</title>
+</head>
+<body>
+<h1>Order: {{ object.id }}</h1>
+<div>
+    <p>Status: {{ object.status }}</p>
+    <p>First name: {{ object.first_name }}</p>
+    <p>Last name: {{ object.last_name }}</p>
+    <p>Car: {{ object.car.model.brand.name }} {{ object.car.model.name }}</p>
+    <p>Email: {{ object.email }}</p>
+    <p>Phone: {{ object.phone }}</p>
+    <p>Message: {{ object.message }}</p>
+</div>
+</body>
+</html>

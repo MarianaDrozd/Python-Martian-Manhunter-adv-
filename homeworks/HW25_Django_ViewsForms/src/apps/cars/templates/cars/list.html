@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars List</title>
+<h1 align="center">Cars</h1>
+<div>
+    <table style="border-spacing: 100px 5px" align="center">
+        <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>City</th>
+            <th>Dealer</th>
+            <th>Contacts</th>
+            <th>Status</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for car in cars %}
+        <tr>
+            <td>{{ car.model.brand.name }}</td>
+            <td>{{ car.model.name }}</td>
+            <td>{{ car.price }}</td>
+            <td>{{ car.dealer.city }}</td>
+            <td>{{ car.dealer.title }}</td>
+            <td>{{ car.dealer.email }}</td>
+            <td>{{ car.status }}</td>
+            <td><a href="{% url 'cars:car_detail' car.slug %}">See details...</a></td>
+        </tr>
+        {% empty %}
+        <tr align="center">Sorry, there's no cars yet. Come here later :)</tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</head>
+<body>
+
+</body>
+</html>

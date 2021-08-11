@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order list</title>
+</head>
+<body>
+<h1>Orders</h1>
+<ul>
+        {% for order in orders %}
+        <li>
+            <p><a href="{% url 'orders:order_detail' order.id %}">{{ order.last_name }} {{ order.first_name }}</a></p>
+            <p>Email: {{ order.email }}</p>
+        </li>
+        {% empty %}
+        <li>Sorry, there's no orders yet. Come here later :)</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

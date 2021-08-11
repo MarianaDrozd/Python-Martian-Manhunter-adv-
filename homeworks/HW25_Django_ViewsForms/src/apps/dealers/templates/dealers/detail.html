@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dealer details</title>
+</head>
+<body>
+<h1>Dealer: {{ object.title }}</h1>
+<div>
+    <p>Email: {{ object.email }}</p>
+    <p>City: {{ object.city.name }}, {{ object.city.country.name }}</p>
+    <p>Cars:</p>
+    <ul>
+        {% for car in object.cars.all %}
+        <li>{{ car.model.brand.name }} {{ car.model.name }}</li>
+        {% empty %}
+        <li>Sorry, there's no car yet. Come here later :)</li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
