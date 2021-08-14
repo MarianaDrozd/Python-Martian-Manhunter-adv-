@@ -2,7 +2,7 @@ from django.urls import path
 
 from apps.dealers.views import DealersListView, DealersDetailView, serialized_dealers
 
-app_name = 'orders'
+app_name = 'dealers'
 
 urlpatterns = [
     path(

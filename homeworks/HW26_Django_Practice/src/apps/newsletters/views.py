@@ -9,7 +9,7 @@ from apps.newsletters.forms import NewsLetterModelForm
 class NewNewsLetterView(FormView):
     template_name = 'newsletters/subscribe.html'
     form_class = NewsLetterModelForm
-    success_url = reverse_lazy('newsletters:success')
+    success_url = reverse_lazy('newsletters:new_newsletter')
 
     def form_valid(self, form):
         form.save()
