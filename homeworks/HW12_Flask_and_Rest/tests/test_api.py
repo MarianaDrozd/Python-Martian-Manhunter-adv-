@@ -1,6 +1,6 @@
 from tests.conftest import client, todos
 import json
-from config import Config
+# from config import Config
 
 
 def test_create(client, todos):
@@ -37,10 +37,7 @@ def test_delete(client):
     assert response.status_code == 404
 
 
-def test_weather(client):
-    Config.WEATHER_API_KEY = "50569510c1msh6d39f712d3097bap19cf4bjsn4a3857cc9fd4"
-    Config.WEATHER_API_URL = "https://community-open-weather-map.p.rapidapi.com/find"
-    Config.WEATHER_API_HOST = "community-open-weather-map.p.rapidapi.com"
+def test_weather(client, weather_api_key, weather_api_host, weather_api_url):
     response = client.get("/weather?city=Lviv")
     assert response.status_code == 200
     response = client.get("/weather?city=Lviv,London")
