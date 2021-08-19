@@ -1,10 +1,10 @@
 from tests.conftest import client
 from config import Config
 
-#
-# def test_homepage(client):
-#     response = client.get("/")
-#     assert response.status_code == 200
+
+def test_homepage(client):
+    response = client.get("/")
+    assert response.status_code == 200
 #
 #
 # def test_search_weather(client):
