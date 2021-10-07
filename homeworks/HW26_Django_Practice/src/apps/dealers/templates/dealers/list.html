@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dealers list</title>
+</head>
+<body>
+<h1 align="center">Dealers</h1>
+<ul>
+        {% for dealer in dealers %}
+        <li>
+            <p><h2><a href="{% url 'dealers:dealer_detail' dealer.id %}">{{ dealer.title }}</a></h2></p>
+            <p><h3>City: {{ dealer.city }}</h3></p>
+        </li>
+        {% empty %}
+        <li align="center">Sorry, there's no dealers yet. Come here later :)</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

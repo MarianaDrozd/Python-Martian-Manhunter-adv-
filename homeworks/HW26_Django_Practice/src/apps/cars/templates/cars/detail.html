@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object.model.brand.name}} {{ object.model.name }}</title>
+</head>
+<body>
+    <h1>Car: {{ object.model.brand.name }} {{ object.model.name }}</h1>
+    <h2>Price {{ object.price }}</h2>
+    <h3>Status: {{ object.status }}</h3>
+    <h4>Registration Date: {{ object.first_registration_date }}</h4>
+    <h3>Dealer: {{ object.dealer.title }} {{ object.dealer.email }}</h3>
+    <h4>City: {{ object.dealer.city}}, {{ object.dealer.country }}</h4>
+<div>
+    <ul>
+        <li>Brand: {{ object.brand.name }}</li>
+        <li>Model: {{ object.model.name }}</li>
+        <li>Color: {{ object.color.name }}</li>
+        <li>Property: {{ object.property.name }}</li>
+        <li>Price {{ object.price }}</li>
+        <li>Number: {{ object.number }}</li>
+        <li>Pollutant Class: {{ object.pollutant_class }}</li>
+        <li>Engine Type: {{ object.engine_type }}</li>
+        <li>Engine Power: {{ object.engine_power }}</li>
+        <li>Capacity: {{ object.capacity }}</li>
+        <li>Gear Case: {{ object.gear_case }}</li>
+        <li>Fuel Type: {{ object.fuel.fuel_type }}</li>
+        <li>Doors: {{ object.doors }}</li>
+        <li>Sitting Place: {{ object.sitting_place }}</li>
+    </ul>
+    <h2>Picture: </h2>
+    <img src="object.picture.url" }}>
+</div>
+</body>
+</html>
