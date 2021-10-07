@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Dealer</title>
+</head>
+<body>
+<h1>Hello there! Here you can see an information about our activity</h1>
+<p><h3>Please, click on these links and get more information about our cars, dealers and orders:</h3></p>
+<ul>
+    <li><h2><a href="{% url 'cars:car_list' %}">Cars</a></h2></li>
+    <li><h2><a href="{% url 'dealers:dealer_list' %}">Dealers</a></h2></li>
+    <li><h2><a href="{% url 'orders:order_list' %}">Orders</a></h2></li>
+</ul>
+<h3>Also, you can subscribe to our newsletters! </h3>
+<p><h2><a href="{% url 'newsletters:new_newsletter' %}">Subscribe!</a></h2></p>
+<h3>Thank you for visiting our website!</h3>
+
+</body>
+</html>
