@@ -16,6 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from status_app.views import status_view
+
+from status_app.views import random_color
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('status/', status_view, name='status'),
+    path('random-color/', random_color, name='random-color')
 ]
