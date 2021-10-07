@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background-color: hotpink;
+}
+
+.header a {
+    color: white;
+}
+
+.header a:hover {
+    color: white;
+    text-decoration: underline;
+}
+.row {
+    font: 32px Brush Script MT;
+    font-style: italic;
+    margin-top: 100px;
+    color: blue;
+    text-align: center;
+}
