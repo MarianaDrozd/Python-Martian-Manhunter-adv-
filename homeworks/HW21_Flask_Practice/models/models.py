@@ -2,6 +2,7 @@
 from app import db
 from helpers.serializers import Serializer
 
+
 class User(db.Model, Serializer):
     """Data model for user accounts."""
     __tablename__ = 'users'

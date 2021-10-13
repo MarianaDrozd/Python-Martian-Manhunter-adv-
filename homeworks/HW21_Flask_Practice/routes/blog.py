@@ -9,7 +9,6 @@ from helpers.additional_functions import check_password
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 from flask_mail import Mail, Message
 
-
 s = URLSafeTimedSerializer('Thisisasecret!')
 mail = Mail(app)
 
@@ -140,3 +139,22 @@ def article_store():
     db.session.add(article)
     db.session.commit()
     return redirect("/")
+
+
+@app.route('/categories', methods=["GET"])
+def show_categories():
+    categories = Category.query.all()
+    session['hello'] = 'hello world'
+    return render_template('blog/categories.html', config=Config, categories=categories)
+
+
+@app.route('/articles', methods=["GET"])
+def show_articles():
+    articles = Article.query.all()
+    session['hello'] = 'hello world'
+    return render_template('blog/articles.html', config=Config, articles=articles)
+
+
+@app.route('/about', methods=["GET"])
+def about_us():
+    return render_template('blog/about.html')

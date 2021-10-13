@@ -9,7 +9,7 @@
 <div class="container">
     <h1 style="text-align: center">{{ article.title }}</h1>
     <div class="article-body">
-        <div class="img">
+        <div class="img" align="center">
             <img src="{{ article.img }}" alt="{{ article.title}}">
         </div>
         <p class="article-description">
@@ -21,4 +21,7 @@
 
 {% include 'blog/shared/scripts.html' %}
 </body>
+<footer>
+    {% include 'blog/shared/footer.html' %}
+</footer>
 </html>
